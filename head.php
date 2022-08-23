@@ -30,92 +30,13 @@ include_once(G5_LIB_PATH.'/popular.lib.php');
         include G5_BBS_PATH.'/newwin.inc.php'; // 팝업레이어
     }
     ?>
-    <div id="tnb">
-    	<div class="inner">
-            <?php if(G5_COMMUNITY_USE) { ?>
-    		<ul id="hd_define">
-    			<li class="active"><a href="<?php echo G5_URL ?>/">커뮤니티</a></li>
-                <?php if (defined('G5_USE_SHOP') && G5_USE_SHOP) { ?>
-    			<li><a href="<?php echo G5_SHOP_URL ?>/">쇼핑몰</a></li>
-                <?php } ?>
-    		</ul>
-            <?php } ?>
-			<ul id="hd_qnb">
-	            <li><a href="<?php echo G5_BBS_URL ?>/faq.php">FAQ</a></li>
-	            <li><a href="<?php echo G5_BBS_URL ?>/qalist.php">Q&A</a></li>
-	            <li><a href="<?php echo G5_BBS_URL ?>/new.php">새글</a></li>
-	            <li><a href="<?php echo G5_BBS_URL ?>/current_connect.php" class="visit">접속자<strong class="visit-num"><?php echo connect('theme/basic'); // 현재 접속자수, 테마의 스킨을 사용하려면 스킨을 theme/basic 과 같이 지정  ?></strong></a></li>
-	        </ul>
-		</div>
-    </div>
     <div id="hd_wrapper">
 
         <div id="logo">
-            <a href="<?php echo G5_URL ?>"><img src="<?php echo G5_IMG_URL ?>/logo.png" alt="<?php echo $config['cf_title']; ?>"></a>
+            <a href="<?php echo G5_URL ?>"><img src="<?php echo G5_THEME_IMG_URL ?>/logo.svg" alt="<?php echo $config['cf_title']; ?>"></a>
         </div>
-    
-        <div class="hd_sch_wr">
-            <fieldset id="hd_sch">
-                <legend>사이트 내 전체검색</legend>
-                <form name="fsearchbox" method="get" action="<?php echo G5_BBS_URL ?>/search.php" onsubmit="return fsearchbox_submit(this);">
-                <input type="hidden" name="sfl" value="wr_subject||wr_content">
-                <input type="hidden" name="sop" value="and">
-                <label for="sch_stx" class="sound_only">검색어 필수</label>
-                <input type="text" name="stx" id="sch_stx" maxlength="20" placeholder="검색어를 입력해주세요">
-                <button type="submit" id="sch_submit" value="검색"><i class="fa fa-search" aria-hidden="true"></i><span class="sound_only">검색</span></button>
-                </form>
 
-                <script>
-                function fsearchbox_submit(f)
-                {
-                    if (f.stx.value.length < 2) {
-                        alert("검색어는 두글자 이상 입력하십시오.");
-                        f.stx.select();
-                        f.stx.focus();
-                        return false;
-                    }
-
-                    // 검색에 많은 부하가 걸리는 경우 이 주석을 제거하세요.
-                    var cnt = 0;
-                    for (var i=0; i<f.stx.value.length; i++) {
-                        if (f.stx.value.charAt(i) == ' ')
-                            cnt++;
-                    }
-
-                    if (cnt > 1) {
-                        alert("빠른 검색을 위하여 검색어에 공백은 한개만 입력할 수 있습니다.");
-                        f.stx.select();
-                        f.stx.focus();
-                        return false;
-                    }
-
-                    return true;
-                }
-                </script>
-
-            </fieldset>
-                
-            <?php echo popular('theme/basic'); // 인기검색어, 테마의 스킨을 사용하려면 스킨을 theme/basic 과 같이 지정  ?>
-        </div>
-        <ul class="hd_login">        
-            <?php if ($is_member) {  ?>
-            <li><a href="<?php echo G5_BBS_URL ?>/member_confirm.php?url=<?php echo G5_BBS_URL ?>/register_form.php">정보수정</a></li>
-            <li><a href="<?php echo G5_BBS_URL ?>/logout.php">로그아웃</a></li>
-            <?php if ($is_admin) {  ?>
-            <li class="tnb_admin"><a href="<?php echo correct_goto_url(G5_ADMIN_URL); ?>">관리자</a></li>
-            <?php }  ?>
-            <?php } else {  ?>
-            <li><a href="<?php echo G5_BBS_URL ?>/register.php">회원가입</a></li>
-            <li><a href="<?php echo G5_BBS_URL ?>/login.php">로그인</a></li>
-            <?php }  ?>
-
-        </ul>
-    </div>
-    
-    <nav id="gnb">
-        <h2>메인메뉴</h2>
-        <div class="gnb_wrap">
-            <ul id="gnb_1dul">
+        <ul id="gnb_1dul">
                 <li class="gnb_1dli gnb_mnal"><button type="button" class="gnb_menu_btn" title="전체메뉴"><i class="fa fa-bars" aria-hidden="true"></i><span class="sound_only">전체메뉴열기</span></button></li>
                 <?php
 				$menu_datas = get_menu_db(0, true);
@@ -123,7 +44,8 @@ include_once(G5_LIB_PATH.'/popular.lib.php');
                 $i = 0;
                 foreach( $menu_datas as $row ){
                     if( empty($row) ) continue;
-                    $add_class = (isset($row['sub']) && $row['sub']) ? 'gnb_al_li_plus' : '';
+                    $add_class = (isset($row['sub']) && $row['sub']) ? '' : '';
+                    // $add_class = (isset($row['sub']) && $row['sub']) ? 'gnb_al_li_plus' : '';
                 ?>
                 <li class="gnb_1dli <?php echo $add_class; ?>" style="z-index:<?php echo $gnb_zindex--; ?>">
                     <a href="<?php echo $row['me_link']; ?>" target="_<?php echo $row['me_target']; ?>" class="gnb_1da"><?php echo $row['me_name'] ?></a>
@@ -153,6 +75,26 @@ include_once(G5_LIB_PATH.'/popular.lib.php');
                     <li class="gnb_empty">메뉴 준비 중입니다.<?php if ($is_admin) { ?> <a href="<?php echo G5_ADMIN_URL; ?>/menu_list.php">관리자모드 &gt; 환경설정 &gt; 메뉴설정</a>에서 설정하실 수 있습니다.<?php } ?></li>
                 <?php } ?>
             </ul>
+
+    
+        <ul class="hd_login">        
+            <?php if ($is_member) {  ?>
+            <li><a href="<?php echo G5_BBS_URL ?>/member_confirm.php?url=<?php echo G5_BBS_URL ?>/register_form.php">정보수정</a></li>
+            <li><a href="<?php echo G5_BBS_URL ?>/logout.php">로그아웃</a></li>
+            <?php if ($is_admin) {  ?>
+            <li class="tnb_admin"><a href="<?php echo correct_goto_url(G5_ADMIN_URL); ?>">관리자</a></li>
+            <?php }  ?>
+            <?php } else {  ?>
+            <li><a href="<?php echo G5_BBS_URL ?>/register.php">회원가입</a></li>
+            <li><a href="<?php echo G5_BBS_URL ?>/login.php">로그인</a></li>
+            <?php }  ?>
+
+        </ul>
+    </div>
+    
+    <nav id="gnb">
+        <h2>메인메뉴</h2>
+        <div class="gnb_wrap">
             <div id="gnb_all">
                 <h2>전체메뉴</h2>
                 <ul class="gnb_al_ul">
@@ -227,7 +169,12 @@ include_once(G5_LIB_PATH.'/popular.lib.php');
 	</div>
 
 	<script>
-		$(".slide").bxSlider();
+		$(".slide").bxSlider({
+            pager: false,
+            controls: false,
+            auto: true,
+            pause: 6000,
+        });
 	</script>
 
 	<? } else { ?>
