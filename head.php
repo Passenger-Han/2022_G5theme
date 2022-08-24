@@ -180,6 +180,14 @@ include_once(G5_LIB_PATH.'/popular.lib.php');
 	<? } else { ?>
 		<div class="visual">회사소개</div>
 	<? } ?>
+
+    <p style="text-align: center; font-size: 1.25em; font-weight: 700; padding: 12px 0;">연습 페이지입니다! 원래 페이지와 무관합니다!</p>
    
     <div id="container">
-        <?php if (!defined("_INDEX_")) { ?><h2 id="container_title"><span title="<?php echo get_text($g5['title']); ?>"><?php echo get_head_title($g5['title']); ?></span></h2><?php }
+        <?php if (!defined("_INDEX_")){?>
+        <h2 id="container_title">
+            <span title="<?php echo get_text($g5['title']); ?>">
+            <?php echo get_head_title($g5['title']); ?>
+            </span>
+            </h2>
+            <?php }

@@ -172,7 +172,7 @@ box-shadow:0 2px 5px rgba(0,0,0,0.2)}
 #container_wr {margin:0 auto;zoom:1}
 #aside {float:right;width:235px;padding:0;height:100%;margin:20px 0 20px 20px}
 
-#container {position:relative;float:left;min-height:500px;height:auto !important;margin:20px 0;font-size:1em;width:930px;zoom:1}
+#container {position:relative;_float:left;min-height:500px;height:auto !important;margin:20px 0;font-size:1em;_width:930px;zoom:1}
 #container:after {display:block;visibility:hidden;clear:both;content:""}
 #container_title {font-size:1.333em;margin:0 auto;font-weight:bold}
 #container_title span {margin:0 auto 10px;display:block;line-height:30px}
@@ -187,12 +187,26 @@ box-shadow:0 2px 5px rgba(0,0,0,0.2)}
 /* 하단 레이아웃 */
 #ft {background:#212020;margin:0 auto;text-align:center}
 #ft h1 {position:absolute;font-size:0;line-height:0;overflow:hidden}
-#ft_wr {max-width:1240px;margin:0;padding:40px 0;position:relative;display:inline-block;text-align:left}
-#ft_wr:after {display:block;visibility:hidden;clear:both;content:""}
-#ft_wr .ft_cnt {width:25%;float:left;padding:0 20px}
+#ft_wr {max-width:800px;margin:0 auto;padding:40px 0;position:relative;display:inline-block;text-align:left;display:flex;justify-content:space-between;}
+/* #ft_wr:after {display:block;visibility:hidden;clear:both;content:""} */
+#ft_wr .ft_cnt {_width:25%;_float:left;_padding:0 20px}
 
-#ft_link {text-align:left}
-#ft_link a {display:block;color:#fff;line-height:2em;font-weight:bold}
+#ft_link {
+	text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+#ft_link a {
+	display: flex;
+    color: #fff;
+    line-height: 2em;
+    font-weight: bold;
+    padding: 4px 16px;
+    _justify-content: center;
+    border-radius: 6px;
+    background-color: #111;
+}
 #ft_company h2 {font-size:1.2em;margin-bottom:20px}
 #ft_company {font-weight:normal;color:#e3e3e3;line-height:2em}
 #ft_catch {margin:20px 0 10px}
@@ -468,4 +482,8 @@ box-sizing:content-box;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+#ctt {
+	padding: 0;
 }
