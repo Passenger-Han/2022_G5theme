@@ -153,6 +153,46 @@ include_once(G5_LIB_PATH.'/popular.lib.php');
 
 <!-- 콘텐츠 시작 { -->
 <div id="wrapper">
+    <?php if (!defined('_INDEX_')){ ?>
+        <style>
+            .head-visual {
+                background-color: pink;
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
+                height: 200px; display: flex; justify-content: center; align-items: center;
+            }
+            .head-visual h2 {font-size: 2em;}
+            .subTopBg_01 {background-image: url(<?php echo G5_THEME_IMG_URL ?>/bg01.jpg);}
+            .subTopBg_02 {background-image: url(<?php echo G5_THEME_IMG_URL ?>/bg02.jpg);}
+            .subTopBg_03 {background-image: url(<?php echo G5_THEME_IMG_URL ?>/bg01.jpg);}
+            .subTopBg_04 {background-image: url(<?php echo G5_THEME_IMG_URL ?>/bg02.jpg);}
+        </style>
+
+    <div class="head-visual" id="page_title">
+        <div class="text-wrapper">
+            <h2 class="loc1D"></h2>
+            <p>WELCOME WELCOME</p>
+        </div>
+    </div>
+        <script>
+            window.onload = function(){
+                if ($('.loc1D').html() == '회사소개'){
+                    $(".text-wrapper > p").html("HELLO HELLO");
+                }
+                if ($('.loc1D').html() == '공지사항'){
+                    $(".text-wrapper > p").html("README README");
+                }
+                if ($('.loc1D').html() == '자유게시판'){
+                    $(".text-wrapper > p").html("FREE FREE");
+                }
+                if ($('.loc1D').html() == '인증서'){
+                    $(".text-wrapper > p").html("CERTIFICATE CERTIFICATE");
+                }
+            };
+        </script>
+    <?php } ?>
+
     <div id="container_wr">
 
 	<?php if (defined('_INDEX_')){ ?>
@@ -178,7 +218,9 @@ include_once(G5_LIB_PATH.'/popular.lib.php');
 	</script>
 
 	<? } else { ?>
-		<div class="visual">회사소개</div>
+		<div class="visual">
+            <?php include_once (G5_THEME_PATH.'/skin/nav/mysubmenu.php') ?>
+        </div>
 	<? } ?>
 
     <p style="text-align: center; font-size: 1.25em; font-weight: 700; padding: 12px 0;">연습 페이지입니다! 원래 페이지와 무관합니다!</p>
@@ -189,5 +231,5 @@ include_once(G5_LIB_PATH.'/popular.lib.php');
             <span title="<?php echo get_text($g5['title']); ?>">
             <?php echo get_head_title($g5['title']); ?>
             </span>
-            </h2>
+        </h2>
             <?php }

@@ -476,12 +476,13 @@ box-sizing:content-box;
 }
 
 .visual {
-	background-color: black;
-	height: 240px;
-	color: white;
+	/* background-color: black; */
+	/* color: white; */
+	height: 60px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+  position: relative;
 }
 
 #ctt {
